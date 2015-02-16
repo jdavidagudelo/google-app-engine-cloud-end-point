@@ -1,0 +1,217 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"c05bU6zpvXPOpQakG5gG3IOJh8Y/VQ5Cmh3T8_txSjooczOeorbl6xU\"",
+ "discoveryVersion": "v1",
+ "id": "greetingApi:v1",
+ "name": "greetingApi",
+ "version": "v1",
+ "title": "Greetings API",
+ "description": "Simple API for greetings using DataStore API of Google",
+ "ownerDomain": "helloworld.example.com",
+ "ownerName": "helloworld.example.com",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rest",
+ "baseUrl": "https://flowing-diode-414.appspot.com/_ah/api/greetingApi/v1/",
+ "basePath": "/_ah/api/greetingApi/v1/",
+ "rootUrl": "https://flowing-diode-414.appspot.com/_ah/api/",
+ "servicePath": "greetingApi/v1/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "Key": {
+   "id": "Key",
+   "type": "object",
+   "properties": {
+    "appId": {
+     "type": "string"
+    },
+    "complete": {
+     "type": "boolean"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "kind": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "namespace": {
+     "type": "string"
+    },
+    "parent": {
+     "$ref": "Key"
+    }
+   }
+  },
+  "MyBean": {
+   "id": "MyBean",
+   "type": "object",
+   "properties": {
+    "data": {
+     "type": "string"
+    }
+   }
+  },
+  "MyBeanCollection": {
+   "id": "MyBeanCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "MyBean"
+     }
+    }
+   }
+  },
+  "PersistentClass": {
+   "id": "PersistentClass",
+   "type": "object",
+   "properties": {
+    "key": {
+     "$ref": "Key"
+    },
+    "name": {
+     "type": "string"
+    }
+   }
+  },
+  "PersistentClassCollection": {
+   "id": "PersistentClassCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "PersistentClass"
+     }
+    }
+   }
+  }
+ },
+ "methods": {
+  "createPersistentClass": {
+   "id": "greetingApi.createPersistentClass",
+   "path": "createPersistentClass/{name}",
+   "httpMethod": "POST",
+   "parameters": {
+    "name": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "name"
+   ],
+   "response": {
+    "$ref": "PersistentClass"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getGreetings": {
+   "id": "greetingApi.getGreetings",
+   "path": "getGreetings",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "MyBeanCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getPersistentClasses": {
+   "id": "greetingApi.getPersistentClasses",
+   "path": "getPersistentClasses",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "PersistentClassCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "sayHi": {
+   "id": "greetingApi.sayHi",
+   "path": "sayHi/{name}",
+   "httpMethod": "POST",
+   "parameters": {
+    "name": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "name"
+   ],
+   "response": {
+    "$ref": "MyBean"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}
